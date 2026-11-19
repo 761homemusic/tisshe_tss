@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tisshé — Лимитированный дроп футболок TSS</title>
+    <style>
+        /* Базовый минимализм в стиле Marcelo Miracles + Y2K акценты */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Триггер дедлайна (Акция по методичке) */
+        .top-bar {
+            background-color: #111111;
+            color: #ffffff;
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 10px 15px;
+        }
+        .top-bar span {
+            color: #ff69b4;
+            font-weight: 700;
+        }
+
+        /* Шапка с фирменным логотипом */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            border-bottom: 1px solid #eeeeee;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.96);
+            z-index: 100;
+        }
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-img {
+            height: 44px;
+            background: #000;
+            padding: 4px 10px;
+            object-fit: contain;
+        }
+        .descriptor {
+            font-size: 11px;
+            color: #777777;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+        nav {
+            display: flex;
+            gap: 28px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        nav a:hover {
+            color: #ff3385;
+        }
+
+        /* Кнопки по правилам методички */
+        .btn {
+            display: inline-block;
+            background-color: #111111;
+            color: #ffffff;
+            padding: 16px 34px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            border: 1px solid #111111;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .btn:hover {
+            background-color: #ff3385;
+            border-color: #ff3385;
+            color: #ffffff;
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: #111111;
+            padding: 12px 24px;
+            font-size: 12px;
+        }
+        .btn-outline:hover {
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        /* Экран 1: Главный экран (Оффер + Фото в розовом авто) */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 82vh;
+            align-items: center;
+            padding: 40px 5%;
+            gap: 50px;
+        }
+        .hero-tag {
+            display: inline-block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: #ffe6f2;
+            color: #d6006b;
+            padding: 6px 12px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .hero-text h1 {
+            font-size: 46px;
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -1px;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+        }
+        .hero-text p {
+            font-size: 16px;
+            color: #444444;
+            margin-bottom: 34px;
+            max-width: 480px;
+        }
+        .hero-image {
+            height: 620px;
+            overflow: hidden;
+            background-color: #f4f4f4;
+        }
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Общие отступы секций ("Воздух") */
+        section {
+            padding: 90px 5%;
+            border-top: 1px solid #f0f0f0;
+        }
+        .section-title {
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666666;
+            font-size: 15px;
+            max-width: 560px;
+            margin: 0 auto 50px;
+        }
+
+        /* Экран 2: Каталог Drop TSS */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+        .product-card {
+            display: flex;
+            flex-direction: column;
+        }
+        .product-img {
+            background-color: #f6f6f6;
+            aspect-ratio: 1 / 1;
+            margin-bottom: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-img img {
+            transform: scale(1.04);
+        }
+        .badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: #111111;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 5px 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .badge-pink {
+            background: #ff3385;
+        }
+        .product-title {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .product-desc {
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 12px;
+        }
+        .product-price {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        /* Экран 3: Геймификация (Промокод за подписку на Telegram) */
+        .game-section {
+            background-color: #111111;
+            color: #ffffff;
+            text-align: center;
+        }
+        .game-section .section-title {
+            color: #ffffff;
+        }
+        .game-section .section-subtitle {
+            color: #bbbbbb;
+        }
+        .game-boxes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 860px;
+            margin: 0 auto 30px;
+        }
+        .mystery-box {
+            background: #1c1c1c;
+            border: 1px solid #333333;
+            padding: 40px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .mystery-box:hover {
+            border-color: #ff3385;
+            transform: translateY(-5px);
+        }
+        .mystery-box.selected {
+            border: 2px solid #ff3385;
+            background: #25151d;
+        }
+        .box-icon {
+            font-size: 38px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .box-name {
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .box-hint {
+            font-size: 12px;
+            color: #888888;
+        }
+
+        /* Шаг 2 геймификации: Подписка на TG и выдача промокода */
+        .tg-unlock-panel {
+            display: none;
+            max-width: 540px;
+            margin: 0 auto;
+            background: #1c1c1c;
+            border: 1px solid #ff3385;
+            padding: 30px;
+        }
+        .tg-unlock-panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        .tg-btn {
+            display: inline-block;
+            background: #2AABEE;
+            color: #ffffff;
+            padding: 15px 30px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 18px 0 12px;
+            transition: opacity 0.2s;
+        }
+        .tg-btn:hover {
+            opacity: 0.9;
+        }
+        .promo-result {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed #444444;
+        }
+        .promo-code-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #ffffff;
+            color: #111111;
+            padding: 12px 24px;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-top: 12px;
+            cursor: pointer;
+        }
+
+        /* Экран 4: Лукбук и комьюнити (Коллаж 2222.png) */
+        .lookbook-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .lookbook-img img {
+            width: 100%;
+            display: block;
+        }
+        .lookbook-info h2 {
+            font-size: 32px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+        .lookbook-list {
+            list-style: none;
+            margin: 25px 0 35px;
+        }
+        .lookbook-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eeeeee;
+            font-size: 14px;
+        }
+        .lookbook-list strong {
+            text-transform: uppercase;
+            margin-right: 8px;
+        }
+
+        /* Экран 5: Форма заказа */
+        .order-section {
+            background-color: #fafafa;
+            text-align: center;
+        }
+        .form-inline {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .form-inline input, .form-inline select {
+            padding: 16px 18px;
+            width: 100%;
+            border: 1px solid #cccccc;
+            background: #ffffff;
+            font-size: 14px;
+        }
+
+        /* Подвал */
+        footer {
+            padding: 40px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #777777;
+            border-top: 1px solid #eeeeee;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 900px) {
+            .hero, .catalog-grid, .game-boxes, .lookbook-grid {
+                grid-template-columns: 1fr;
+            }
+            nav { display: none; }
+            .hero-text h1 { font-size: 32px; }
+            .hero-image { height: 420px; }
+            .form-inline { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Триггер дедлайна -->
+    <div class="top-bar">
+        DROP 01: «TSS DOLLS» — Тираж 50 штук на модель • <span>Забери секретный промокод ниже</span>
+    </div>
+
+    <!-- Шапка с фирменным логотипом IMG_3857.JPG -->
+    <header>
+        <div class="logo-wrap">
+            <img src="IMG_3857.JPG" alt="Tisshé Logo" class="logo-img">
+            <span class="descriptor">Лимитированный стритвир</span>
+        </div>
+        <nav>
+            <a href="#catalog">Каталог</a>
+            <a href="#game">Игра и промокод</a>
+            <a href="#lookbook">Лукбук</a>
+            <a href="#order">Заказать</a>
+        </nav>
+        <a href="#game" class="btn btn-outline">Забрать скидку</a>
+    </header>
+
+    <!-- Экран 1: Оффер + Фото IMG_3860.jpg -->
+    <div class="hero">
+        <div class="hero-text">
+            <span class="hero-tag">Limited Y2K Collection</span>
+            <h1>Футболки Tisshé с объемными фактурными принтами</h1>
+            <p>Плотный 100% хлопок 260 г/м², идеальный оверсайз-крой и дерзкие текстуры: меховой леопард, плюш и глянец. Создано для тех, кто любит быть в центре кадра.</p>
+            <a href="#catalog" class="btn">Выбрать свою футболку</a>
+        </div>
+        <div class="hero-image">
+            <img src="IMG_3860.jpg" alt="Tisshé Pink Car Look">
+        </div>
+    </div>
+
+    <!-- Экран 2: Каталог с вашими фото товаров -->
+    <section id="catalog">
+        <h2 class="section-title">Коллекция TSS</h2>
+        <p class="section-subtitle">Каждая модель выпускается ограниченным тиражом. Принты выдерживают более 60 стирок без потери объема и цвета.</p>
+        
+        <div class="catalog-grid">
+            <!-- Товар 1: IMG_3480.jpg -->
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="badge badge-pink">Хит дропа</span>
+                    <img src="IMG_3480.jpg" alt="Футболка TSS Leopard & Denim">
+                </div>
+                <div class="product-title">Футболка «TSS Classic Mix»</div>
+                <div class="product-desc">Комбинированный принт: леопардовый мех, кожа и деним с акцентом-поцелуем</div>
+                <div class="product-price">5 900 ₽</div>
+                <a href="#order" class="btn btn-outline">Оформить заказ</a>
+            </div>
+
+            <!-- Товар 2: IMG_5217.JPG -->
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="badge">Лимитировано</span>
+                    <img src="IMG_5217.JPG" alt="Футболка TSS Plush & Balloons">
+                </div>
+                <div class="product-title">Футболка «TSS Pink Plush»</div>
+                <div class="product-desc">Объемный розовый плюш на спине + леопардовый принт. 100% премиум-хлопок</div>
+                <div class="product-price">6 200 ₽</div>
+                <a href="#order" class="btn btn-outline">Оформить заказ</a>
+            </div>
+
+            <!-- Товар 3: 2222.png -->
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="badge">Unisex Fit</span>
+                    <img src="2222.png" alt="Футболка TSS Street Edition">
+                </div>
+                <div class="product-title">Футболка «TSS Street Pack»</div>
+                <div class="product-desc">Свободная посадка для парней и девушек. Размеры XS — XL в наличии</div>
+                <div class="product-price">5 900 ₽</div>
+                <a href="#order" class="btn btn-outline">Оформить заказ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Экран 3: Геймификация (Секретный бокс за подписку на Telegram) -->
+    <section id="game" class="game-section">
+        <h2 class="section-title">Тайный бокс Tisshé</h2>
+        <p class="section-subtitle">Выбери одну из 3-х карточек ниже, подпишись на наш закрытый Telegram-канал и забери свой гарантированный бонус на первый заказ.</p>
+
+        <div class="game-boxes">
+            <div class="mystery-box" onclick="selectBox(this, 'TISSHE15', 'Скидка 15% на любую футболку из дропа')">
+                <span class="box-icon">🐆</span>
+                <div class="box-name">Бокс №1: Леопард</div>
+                <div class="box-hint">Нажми, чтобы выбрать</div>
+            </div>
+
+            <div class="mystery-box" onclick="selectBox(this, 'PLUSH1000', 'Сертификат на 1 000 ₽ на покупку')">
+                <span class="box-icon">💋</span>
+                <div class="box-name">Бокс №2: Розовый плюш</div>
+                <div class="box-hint">Нажми, чтобы выбрать</div>
+            </div>
+
+            <div class="mystery-box" onclick="selectBox(this, 'FREEGIFT', 'Фирменный стикерпак + бесплатная доставка')">
+                <span class="box-icon">🎈</span>
+                <div class="box-name">Бокс №3: Красный глянец</div>
+                <div class="box-hint">Нажми, чтобы выбрать</div>
+            </div>
+        </div>
+
+        <!-- Панель разблокировки после выбора бокса -->
+        <div id="tgPanel" class="tg-unlock-panel">
+            <div style="font-size: 16px; font-weight: 700; text-transform: uppercase;">Отличный выбор! Бокс забронирован за вами</div>
+            <p style="font-size: 13px; color: #cccccc; margin-top: 8px;">Чтобы открыть приз, перейдите в наш Telegram-канал и нажмите «Подписаться» — код появится автоматически:</p>
+            
+            <!-- Замените href на реальную ссылку вашего Telegram-канала -->
+            <a href="https://t.me/tisshe_brand" target="_blank" class="tg-btn" onclick="unlockPromo()">
+                Подписаться на @tisshe_brand и открыть приз
+            </a>
+
+            <div id="promoResult" class="promo-result">
+                <div id="prizeDescription" style="color: #ff69b4; font-weight: 700; font-size: 15px;"></div>
+                <div class="promo-code-box" onclick="copyPromo()" title="Нажмите, чтобы скопировать">
+                    <span id="promoCodeText">TISSHE15</span>
+                    <span style="font-size: 11px; text-transform: uppercase; background: #111; color: #fff; padding: 4px 8px;">Копировать</span>
+                </div>
+                <div id="copyNotice" style="font-size: 12px; color: #4ade80; margin-top: 8px; display: none;">Промокод скопирован! Вставьте его в форму заказа ниже.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Экран 4: Лукбук и выгоды (Коллаж 2222.png) -->
+    <section id="lookbook">
+        <div class="lookbook-grid">
+            <div class="lookbook-img">
+                <img src="2222.png" alt="Tisshé Lookbook Collage">
+            </div>
+            <div class="lookbook-info">
+                <h2>Создано для тех, кто задает правила</h2>
+                <p style="color: #555555;">Футболки Tisshé одинаково круто смотрятся с рваным денимом, кожаными брюками и карго. Унисекс-крой садится на любую фигуру.</p>
+                <ul class="lookbook-list">
+                    <li><strong>01 / Ткань:</strong> Пенье компакт 260 г/м² — не просвечивает и держит форму воротника.</li>
+                    <li><strong>02 / Принт:</strong> Тактильная печать с эффектом фактуры, не трескается после стирки.</li>
+                    <li><strong>03 / Доставка:</strong> Отправляем СДЭК и Почтой России в течение 24 часов в фирменной упаковке.</li>
+                </ul>
+                <a href="#order" class="btn">Заказать свой размер</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Экран 5: Форма заказа с полем для промокода -->
+    <section id="order" class="order-section">
+        <h2 class="section-title">Оформить заказ</h2>
+        <p class="section-subtitle">Оставьте контакты и введите промокод из Telegram — менеджер свяжется в мессенджере, уточнит размер и отправит трек-номер.</p>
+        <form class="form-inline" onsubmit="event.preventDefault(); alert('Заказ принят! Менеджер Tisshé скоро напишет вам в Telegram.');">
+            <input type="text" placeholder="Ваш ник в Telegram или телефон" required>
+            <select required>
+                <option value="" disabled selected>Выберите размер</option>
+                <option value="XS-S">XS / S (Оверсайз)</option>
+                <option value="M-L">M / L (Оверсайз)</option>
+                <option value="XL">XL (Оверсайз)</option>
+            </select>
+            <input type="text" id="orderPromoInput" placeholder="Промокод (если есть)">
+            <button type="submit" class="btn">Заказать</button>
+        </form>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div>© 2026 Tisshé. Все права защищены.</div>
+        <div>Telegram: @tisshe_brand</div>
+        <div>Доставка по РФ и СНГ</div>
+    </footer>
+
+    <!-- Скрипт геймификации -->
+    <script>
+        let currentCode = '';
+        let currentDesc = '';
+
+        function selectBox(element, code, desc) {
+            // Снимаем выделение со всех карточек
+            document.querySelectorAll('.mystery-box').forEach(box => box.classList.remove('selected'));
+            // Выделяем выбранную
+            element.classList.add('selected');
+            
+            currentCode = code;
+            currentDesc = desc;
+
+            // Показываем панель подписки на Telegram
+            const panel = document.getElementById('tgPanel');
+            panel.classList.add('active');
+            document.getElementById('promoResult').style.display = 'none';
+        }
+
+        function unlockPromo() {
+            // Небольшая задержка имитирует проверку перехода в Telegram
+            setTimeout(() => {
+                document.getElementById('prizeDescription').innerText = 'Ваш приз: ' + currentDesc;
+                document.getElementById('promoCodeText').innerText = currentCode;
+                document.getElementById('promoResult').style.display = 'block';
+                // Автоматически подставляем промокод в форму заказа ниже
+                document.getElementById('orderPromoInput').value = currentCode;
+            }, 1200);
+        }
+
+        function copyPromo() {
+            navigator.clipboard.writeText(currentCode);
+            document.getElementById('copyNotice').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
